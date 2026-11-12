@@ -1,0 +1,14 @@
+{
+  "name": "glass-nav",
+  "version": "1.0.0",
+  "description": "An iOS-inspired glass navigation and companion button for web deployments.",
+  "type": "module",
+  "license": "MIT",
+  "exports": "./src/index.js",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,103 @@
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#171719;background:#f2f2f7;padding:18px;display:flex;flex-direction:column;gap:16px;-webkit-font-smoothing:antialiased}.preview{position:relative;flex:1;min-height:0;border-radius:28px;overflow:hidden;background:#e4e3df;isolation:isolate}.scene-scroll{height:100%;overflow:auto;overscroll-behavior:contain;scrollbar-width:none;touch-action:pan-y}.scene-scroll::-webkit-scrollbar{display:none}#root{background:#ebe8e3;min-height:100%;padding-bottom:100px}.scene-image{display:block;width:100%;height:auto;aspect-ratio:1.5;object-fit:cover}.scene-copy{padding:28px 30px 32px;max-width:700px;margin:auto}.scene-copy .eyebrow{font-size:10px;letter-spacing:.1em;font-weight:700;color:#71716e;margin:0 0 12px}.scene-copy h1,.scene-copy h2{font-size:clamp(28px,5vw,40px);line-height:1.04;letter-spacing:-.045em;margin:0 0 12px;font-weight:700}.scene-copy p{font-size:16px;line-height:1.5;letter-spacing:-.02em;margin:16px 0 0}.scene-copy .location{font-size:22px;line-height:1.15;color:#777771;margin:0 0 22px}.garden{margin-top:6px}.liquid-glass-controls{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);width:min(92%,420px);z-index:10}.color-study{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:32px}.color-study span{height:90px;border-radius:20px;background:#d76e40}.color-study span:nth-child(2){background:#609884}.color-study span:nth-child(3){background:#789bb6}.color-study span:nth-child(4){background:#b49ba4}.scene-copy .ending{font-weight:600;font-size:23px;margin-top:30px}.appearance{flex:0 0 auto}.slider-row{height:54px;padding:8px 18px;display:flex;align-items:center;gap:18px;background:#fff;border-radius:999px}.material-icon{display:block;position:relative;width:20px;height:16px;border:1.5px solid #87878b;border-radius:5px;flex-shrink:0}.material-icon::before{content:'';position:absolute;inset:-5px 4px 3px -5px;border:1.5px solid #87878b;border-radius:5px}.frost-icon{background:#87878b}.frost-icon::before{background:#87878b}input:focus-visible{outline:2px solid #007aff;outline-offset:4px;border-radius:999px}.slider-labels{display:flex;justify-content:space-between;align-items:center;padding:9px 20px 0;font-size:11px;color:#7b7b80}.slider-labels output{font-variant-numeric:tabular-nums}.appearance>p{text-align:center;font-size:12px;color:#828288;margin:9px 0 0}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}@media(max-width:450px){body{padding:12px;gap:12px}.preview{border-radius:24px}.scene-copy{padding:24px 22px 30px}.scene-copy p{font-size:15px}.scene-image{aspect-ratio:1.1;object-fit:cover}.liquid-glass-controls{bottom:20px;width:calc(100% - 28px)}.scene-copy .location{font-size:20px}}
+html{color-scheme:light}
+html, body { height: auto; min-height: 0; }
+.preview { flex: 0 0 auto; width: 100%; aspect-ratio: 4 / 3; }
+.scene-scroll { position: absolute; inset: 0; }
+.scene-image{aspect-ratio:auto}
+.scene-copy .photo-credit{font-size:11px;line-height:1.5;color:#777;margin-top:32px}
+.photo-credit a{color:inherit;text-underline-offset:2px}
+
+.slider-control {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 36px;
+}
+
+.slider-control input {
+  position: relative;
+  z-index: 4;
+  display: block;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 36px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  touch-action: none;
+}
+.slider-control input[data-pointer-focus]:focus-visible { outline: none; }
+
+.slider-control input::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 99px;
+  background: transparent;
+}
+
+.slider-control input::-webkit-slider-thumb {
+  appearance: none;
+  width: 42px;
+  height: 30px;
+  margin-top: -12px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.slider-control input::-moz-range-track {
+  height: 6px;
+  border-radius: 99px;
+  background: transparent;
+}
+
+.slider-control input::-moz-range-thumb {
+  width: 42px;
+  height: 30px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.slider-thumb {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  width: 42px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.slider-thumb::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: white;
+  box-shadow: 0 2px 7px #0002;
+  opacity: calc(1 - var(--slider-active, 0));
+}
+
+.slider-control::before, .slider-fill {
+  position: absolute;
+  left: 0;
+  top: calc(50% - 3px);
+  height: 6px;
+  border-radius: 999px;
+  pointer-events: none;
+}
+.slider-control::before { content: ''; width: 100%; background: #e2e2e4; }
+.slider-fill { width: var(--slider-progress, 50%); background: #007aff; }
+.slider-thumb canvas { opacity: 0; }
+.slider-dots { position: absolute; left: 21px; right: 21px; top: 24px; display: flex; justify-content: space-between; pointer-events: none; }
+.slider-dots i { width: 3px; height: 3px; border-radius: 50%; background: #b9b9bd; }
+.slider-dots .is-selected { background: #007aff; }
+.material-icon { transform-origin: center; }
+
+/* A persistent, draggable gray scrollbar inside the 4:3 viewport. */
+.scene-scrollbar { position: absolute; z-index: 11; top: 32px; right: 5px; bottom: 32px; width: 10px; border-radius: 99px; background: transparent; touch-action: none; cursor: pointer; }
+.scene-scrollbar span { position: absolute; left: 2px; right: 2px; top: 0; border-radius: 99px; background: #56565bb3; pointer-events: none; }
+.scene-scrollbar:focus-visible { outline: 2px solid #007aff; outline-offset: 2px; }
+@media (max-width: 450px) { .scene-scrollbar { top: 28px; bottom: 28px; } }

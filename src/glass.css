@@ -1,0 +1,17 @@
+.liquid-glass-controls{display:flex;align-items:center;justify-content:center;gap:12px;pointer-events:none;isolation:isolate}
+.glass-navbar{box-sizing:border-box;display:flex;position:relative;width:284px;height:54px;padding:4px;border:0;border-radius:999px;background:rgb(255 255 255/.7);backdrop-filter:blur(18px) saturate(1.35);-webkit-backdrop-filter:blur(18px) saturate(1.35);box-shadow:0 8px 24px rgb(0 0 0/.08);touch-action:none;user-select:none;-webkit-user-select:none;pointer-events:auto;cursor:grab}
+.glass-navbar.has-glass-track{background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none}
+.glass-navbar .nb{appearance:none;position:relative;z-index:2;flex:1;min-width:0;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:0 3px;border:0;border-radius:999px;background:none;color:#000;cursor:inherit;font:600 10px/1 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;-webkit-tap-highlight-color:transparent;touch-action:none}
+.glass-navbar .nb>svg{width:27px;height:27px;display:block;flex-shrink:0}
+.glass-navbar .nb[aria-current=page]{color:#007aff}
+.glass-navbar.is-liquid-ready .nb>svg,.glass-navbar.is-liquid-ready .nb>span{opacity:0}
+.glass-navbar[data-keyboard-focus=true]::after{content:'';position:absolute;z-index:4;pointer-events:none;border:2px solid #007aff;box-sizing:border-box;border-radius:999px;left:var(--nav-focus-x);top:var(--nav-focus-y);width:var(--nav-focus-width);height:var(--nav-focus-height)}
+.glass-action{box-sizing:border-box;position:relative;display:block;flex:0 0 54px;width:54px;height:54px;padding:0;border:0;background:none;overflow:visible;touch-action:none;pointer-events:auto;cursor:pointer;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+[data-glass-surface],[data-glass-foreground]{position:absolute;inset:0;transform-origin:27px 27px;border-radius:50%;pointer-events:none}
+[data-glass-surface]{background:rgb(255 255 255/var(--glass-opacity,.7));backdrop-filter:blur(18px) saturate(1.35);-webkit-backdrop-filter:blur(18px) saturate(1.35);box-shadow:0 6px 20px rgb(0 0 0/.1)}
+[data-glass-surface].has-glass-surface{background:transparent!important;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none}
+[data-glass-foreground]{z-index:2;display:grid;place-items:center;color:rgb(0 calc(122*var(--glass-action-active,0)) calc(255*var(--glass-action-active,0)))}
+[data-glass-foreground]>svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:2.35;stroke-linecap:round;stroke-linejoin:round}
+.glass-action:focus-visible{outline:2px solid #007aff;outline-offset:6px;border-radius:50%}
+@media(max-width:450px){.liquid-glass-controls{gap:9px}.glass-navbar{width:min(216px,calc(100% - 63px))}.glass-navbar .nb{font-size:9px}.glass-navbar .nb>svg{width:25px;height:25px}}
+@media(prefers-reduced-motion:reduce){.glass-navbar,.glass-action{scroll-behavior:auto}}

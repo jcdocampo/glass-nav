@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>GlassNav Playground</title><link rel="stylesheet" href="./src/glass.css"><link rel="stylesheet" href="./demo.css"></head>
+<body>
+ <div class="preview" id="preview">
+  <div class="scene-scroll" id="scene-scroll" tabindex="0" aria-label="Scrollable glass preview">
+   <main id="root">
+    <img class="scene-image" src="./assets/palawan-lagoon.webp" width="1200" height="800" alt="An AI-generated scene inspired by Palawan, with turquoise water and limestone cliffs" decoding="async">
+    <article class="scene-copy"><p class="eyebrow">PALAWAN</p><h1>Where the blue turns green.</h1><p class="location">Limestone cliffs. Clear water. Quiet shores.</p><p>Palawan brings together steep limestone landscapes and water that shifts from pale turquoise to deep emerald. Along the shore, sunlight catches the ripples and casts the palms' shadows across the sand.</p><p>It is one of the many ways the Philippines surprises you with color, even before you leave the water's edge.</p></article>
+    <img class="scene-image" src="./assets/cordillera-terraces.webp" width="1200" height="800" alt="An AI-generated Cordillera-inspired landscape of green rice terraces and misty mountains" loading="lazy" decoding="async">
+    <article class="scene-copy"><p class="eyebrow">THE CORDILLERA</p><h2>Green, from one hillside to the next.</h2><p>In the northern mountains, rice terraces trace the shape of the land. Water catches the sky between rows of young rice, while the hills fade into morning mist.</p><p>The landscape changes with the light, revealing a quieter palette of fresh greens, warm earth, and distant blue ridges.</p></article>
+    <img class="scene-image" src="./assets/mayon-garden.webp" width="1200" height="800" alt="An AI-generated Albay-inspired flower garden with Mayon in the distance" loading="lazy" decoding="async">
+    <article class="scene-copy"><p class="eyebrow">ALBAY</p><h2>A little more color.</h2><p>A garden of bright bougainvillea and hibiscus brings pinks, reds, and oranges into view. Beyond the flowers, Mayon's distinctive outline rises above the green foothills.</p><p>From island lagoons to mountain terraces and gardens in bloom, there is always another part of the Philippines to look forward to.</p><p class="photo-credit">Original AI-generated illustrations inspired by Philippine scenery.</p></article>
+   </main>
+
+  </div>
+  <div class="scene-scrollbar" role="scrollbar" tabindex="0" aria-label="Scroll playground content" aria-controls="scene-scroll" aria-orientation="vertical" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div>
+  <nav class="liquid-glass-controls" aria-label="Playground navigation" data-glass-control>
+   <div class="glass-navbar" id="pill" data-glass-control>
+    <button class="nb" data-nav="home" type="button" aria-label="Home"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M11.15 2.7a1.3 1.3 0 0 1 1.7 0l7.78 6.74a1.8 1.8 0 0 1 .62 1.36v9.7a1.5 1.5 0 0 1-1.5 1.5H14.5v-6.5a.8.8 0 0 0-.8-.8h-3.4a.8.8 0 0 0-.8.8V22H4.25a1.5 1.5 0 0 1-1.5-1.5v-9.7a1.8 1.8 0 0 1 .62-1.36Z"/></svg><span>Home</span></button>
+    <button class="nb" data-nav="explore" type="button" aria-label="Explore"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path fill-rule="evenodd" d="M12 1.8a10.2 10.2 0 1 0 0 20.4 10.2 10.2 0 0 0 0-20.4Zm4.5 5.7-2.9 6.1-6.1 2.9 2.9-6.1Zm-4.5 3a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/></svg><span>Explore</span></button>
+    <button class="nb" data-nav="library" type="button" aria-label="Library"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M3 3h4v18H3zM9 3h4v18H9zM15 4.1l3.8-1 4.6 17-3.9 1z"/></svg><span>Library</span></button>
+    <button class="nb" data-nav="favorites" type="button" aria-label="Favorites"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M12 21S2 15.2 2 8.6A5.6 5.6 0 0 1 12 5a5.6 5.6 0 0 1 10 3.6C22 15.2 12 21 12 21Z"/></svg><span>Favorites</span></button>
+   </div>
+   <button id="glass-action" class="glass-action" type="button" aria-label="Search preview" data-glass-control><span data-glass-surface></span><span data-glass-foreground><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 10.5a6 6 0 1 1-12 0 6 6 0 0 1 12 0Zm-1.8 4.2 5 5"/></svg></span></button>
+  </nav>
+ </div>
+ <div class="appearance"><div class="slider-row"><span aria-hidden="true" class="material-icon clear-icon"></span><div class="slider-control"><span class="slider-fill" aria-hidden="true"></span><input id="frost" type="range" min="40" max="80" value="60" step="any" aria-label="Liquid Glass frosting" aria-valuetext="60% frosted"><span id="slider-thumb" class="slider-thumb" aria-hidden="true"></span><span class="slider-dots" aria-hidden="true"><i data-slider-stop="40"></i><i data-slider-stop="60"></i><i data-slider-stop="80"></i></span></div><span aria-hidden="true" class="material-icon frost-icon"></span></div><div class="slider-labels" aria-hidden="true"><span>Clearer</span><span>Balanced</span><span>Frosted</span></div></div>
+ <span class="sr-only" id="selection-status" role="status" aria-live="polite"></span>
+ <script type="module" src="./demo.js"></script>
+</body></html>
