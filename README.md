@@ -15,10 +15,15 @@ releasing near Clearer, Balanced, or Frosted softly snaps to that stop (40%, 60%
 or 80%). Intermediate values remain where you leave them.
 Three dots mark those positions. The white slider thumb becomes clear Liquid Glass
 while pressed, above a rounded blue progress line that follows the thumb center.
-The fill extends to the track edges only on endpoint snaps. Each snap finishes
-with a soft inward squeeze, anchored at an end or symmetric at Balanced. The scrollable 4:3 scene
-has its own gray scrollbar, inset clear of the rounded corners. Its thumb
-shortens gently on overscroll and springs back, with the appearance slider below.
+The fill extends to the track edges only on endpoint snaps. Release finishes
+with a soft inward squeeze, anchored at an endpoint or symmetric at Balanced
+and intermediate positions. Pointer dragging is bound to the visible thumb;
+the range input remains available for keyboard controls.
+
+On narrow mobile layouts the scrollable scene is square and fills the article
+margins; wider layouts use a 4:3 scene. Its gray scrollbar stays clear of the
+rounded corners, shortens gently on overscroll, and springs back. The appearance
+slider stays below the scene.
 
 ## Video demo
 

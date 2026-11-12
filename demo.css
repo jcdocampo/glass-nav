@@ -12,6 +12,9 @@ html, body { height: auto; min-height: 0; }
   flex: 1;
   min-width: 0;
   height: 36px;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .slider-control input {
@@ -24,7 +27,7 @@ html, body { height: auto; min-height: 0; }
   height: 36px;
   margin: 0;
   background: transparent;
-  cursor: pointer;
+  pointer-events: none;
   touch-action: none;
 }
 .slider-control input[data-pointer-focus]:focus-visible { outline: none; }
@@ -67,8 +70,11 @@ html, body { height: auto; min-height: 0; }
   width: 42px;
   height: 30px;
   transform: translate(-50%, -50%);
-  pointer-events: none;
+  pointer-events: auto;
+  touch-action: none;
+  cursor: grab;
 }
+.slider-thumb:active { cursor: grabbing; }
 
 .slider-thumb::before {
   content: '';
@@ -101,3 +107,7 @@ html, body { height: auto; min-height: 0; }
 .scene-scrollbar span { position: absolute; left: 2px; right: 2px; top: 0; border-radius: 99px; background: #56565bb3; pointer-events: none; }
 .scene-scrollbar:focus-visible { outline: 2px solid #007aff; outline-offset: 2px; }
 @media (max-width: 450px) { .scene-scrollbar { top: 28px; bottom: 28px; } }
+@media (max-width: 600px) {
+  body { padding-inline: 0; }
+  .preview { aspect-ratio: 1; }
+}

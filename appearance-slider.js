@@ -149,7 +149,7 @@ export function createAppearanceSlider(input, thumb, onChange) {
     squeeze = 0
     if (impact) {
       const age = (time - impact.start) / 1000
-      const amount = impact.stop === stops[1] ? .085 : .11
+      const amount = impact.stop === stops[0] || impact.stop === stops[2] ? .11 : .085
       const phase = age < .19 ? Math.min(1, age / .19) : Math.max(0, 1 - (age - .19) / .39)
       squeeze = amount * phase * phase * (3 - 2 * phase)
       if (age >= .58 || preference.matches) impact = null
@@ -161,7 +161,8 @@ export function createAppearanceSlider(input, thumb, onChange) {
     const naturalWidth = width * (1 + active * .28)
     visualWidth = naturalWidth * (1 - squeeze)
     visualHeight = height * (1 + active * .16) * (1 + squeeze * .28)
-    const offset = !impact || impact.stop === stops[1] ? 0 : (naturalWidth - visualWidth) / 2 * (impact.stop === stops[0] ? -1 : 1)
+    const side = impact?.stop === stops[0] ? -1 : impact?.stop === stops[2] ? 1 : 0
+    const offset = (naturalWidth - visualWidth) / 2 * side
     thumb.style.width = `${visualWidth}px`
     thumb.style.height = `${visualHeight}px`
     thumb.style.left = `${center + offset}px`
@@ -183,19 +184,20 @@ export function createAppearanceSlider(input, thumb, onChange) {
     if (!pointerHeld && !keyHeld) return
     const captured = pointerId
     pointerId = null
-    if (captured !== null && input.hasPointerCapture(captured)) input.releasePointerCapture(captured)
+    if (captured !== null && thumb.hasPointerCapture(captured)) thumb.releasePointerCapture(captured)
     pointerHeld = false
     keyHeld = false
     const nearest = stops.reduce((nearest, stop) => Math.abs(stop - input.valueAsNumber) < Math.abs(nearest - input.valueAsNumber) ? stop : nearest)
     snapTarget = Math.abs(nearest - input.valueAsNumber) <= snapRadius ? nearest : null
     pendingImpact = snapTarget !== null && (dragMoved || Math.abs(nearest - input.valueAsNumber) > .001)
+    if (snapTarget === null && !preference.matches) impact = {start: performance.now(), stop: null}
     snapVelocity = 0
     if (snapTarget !== null) signalStop(snapTarget)
     wake()
   }
 
   listen(input, 'input', () => {snapTarget = null; snapVelocity = 0; updateGeometry()})
-  listen(input, 'pointerdown', event => {
+  listen(thumb, 'pointerdown', event => {
     event.preventDefault()
     if (!event.isPrimary || event.button !== 0 || pointerId !== null) return
     const rect = thumb.getBoundingClientRect()
@@ -210,11 +212,11 @@ export function createAppearanceSlider(input, thumb, onChange) {
     snapVelocity = 0
     input.dataset.pointerFocus = 'true'
     input.focus({preventScroll: true})
-    input.setPointerCapture(pointerId)
+    thumb.setPointerCapture(pointerId)
     feedbackUntil = performance.now() + 130
     wake()
   }, {capture: true})
-  listen(input, 'pointermove', event => {
+  listen(thumb, 'pointermove', event => {
     if (event.pointerId !== pointerId) return
     event.preventDefault()
     const x = event.clientX - input.getBoundingClientRect().left - grabOffset
@@ -231,7 +233,7 @@ export function createAppearanceSlider(input, thumb, onChange) {
   }
   listen(window, 'pointerup', endPointer)
   listen(window, 'pointercancel', endPointer)
-  listen(input, 'lostpointercapture', endPointer)
+  listen(thumb, 'lostpointercapture', endPointer)
   listen(input, 'keydown', event => {
     delete input.dataset.pointerFocus
     if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End', 'PageUp', 'PageDown'].includes(event.key)) {
